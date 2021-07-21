@@ -9,16 +9,16 @@ weatherForm.addEventListener('submit', (e) => {
     fetch('/weather?address='+location)
     .then((response) => {
         response.json().then((data) => {
-
+            console.log(data)
             messageOne.textContent = 'Loading';
             messageTwo.textContent = ''
             if(data.success == false) {
                 messageOne.textContent = 'Try with valid address';
                
             }
-            const {feelslike, temperature, weather_descriptions} = data.current;
-            
-            messageOne.textContent = `Temperature is ${temperature}, feelslike ${feelslike}, expect ${weather_descriptions[0]}`;
+            const {location,feelslike, temperature, weather_descriptions} = data;
+            messageOne.textContent = location
+            messageTwo.textContent = `Temperature is ${temperature}, feelslike ${feelslike}, expect ${weather_descriptions[0]}`;
         })
     })
 })
